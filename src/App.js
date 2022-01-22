@@ -14,16 +14,8 @@ import { getUserWithStoredToken } from "./store/user/actions";
 import { Jumbotron } from "react-bootstrap";
 import Homepage from "./pages/Homepage";
 import DetailService from "./pages/DetailService";
-const Home = () => (
-  <Jumbotron>
-    <h1>Home</h1>
-  </Jumbotron>
-);
-const Other = () => (
-  <Jumbotron>
-    <h1>Other</h1>
-  </Jumbotron>
-);
+import Reservation from "./pages/Reservation";
+import Gallary from "./pages/Gallary";
 
 function App() {
   const dispatch = useDispatch();
@@ -40,12 +32,15 @@ function App() {
       {isLoading ? <Loading /> : null}
       <Routes>
         <Route exact path="/" element={<Homepage />} />
-        <Route path="/:name" element={<DetailService />} />
-        <Route path="/signup" element={<SignUp />} />
-        <Route path="/login" element={<Login />} />
+        <Route exact path="/reservation" element={<Reservation />} />
+        <Route exact path="/gallary" element={<Gallary />} />
+
+        <Route exact path="/:name" element={<DetailService />} />
+        <Route exact path="/signup" element={<SignUp />} />
+        <Route exact path="/login" element={<Login />} />
       </Routes>
     </div>
   );
-}
+} ///didnt have the exact on every rout in the begining which made the routs wired in the app . always keep the exact on
 
 export default App;

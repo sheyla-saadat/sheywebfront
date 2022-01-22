@@ -34,7 +34,7 @@ export default function Homepage() {
   return (
     <div>
       <div style={{ textAlign: "center" }}>
-        <h1> About me </h1>
+        <h1> {aboutMe && aboutMe.serviceName} </h1>
         <img
           style={{ width: "50%", height: "50%" }}
           src={aboutMe && aboutMe.imageUrl}

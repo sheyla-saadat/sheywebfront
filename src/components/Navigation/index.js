@@ -7,6 +7,7 @@ import { selectToken } from "../../store/user/selectors";
 import NavbarItem from "./NavbarItem";
 import LoggedIn from "./LoggedIn";
 import LoggedOut from "./LoggedOut";
+import { NavDropdown } from "react-bootstrap";
 
 export default function Navigation() {
   const token = useSelector(selectToken);
@@ -22,11 +23,19 @@ export default function Navigation() {
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav style={{ width: "100%" }} fill>
           <NavbarItem path="/" linkText="Home" />
-          <NavbarItem path="/other" linkText="Reservation" />
-          <NavbarItem path="/" linkText="Phibrows" />
+          <NavbarItem path="/reservation" linkText="Reservation" />
+
+          <NavDropdown title="Services" id="basic-nav-dropdown">
+            <NavDropdown.Item href="/Phibrows">Phibrows</NavDropdown.Item>
+            <NavDropdown.Item href="/Phiremoval">Phiremoval</NavDropdown.Item>
+            <NavDropdown.Item href="/Philashes">Philash</NavDropdown.Item>
+          </NavDropdown>
+
+          <NavbarItem path="/gallary" linkText="Gallary" />
+
           {loginLogoutControls}
         </Nav>
       </Navbar.Collapse>
     </Navbar>
-  );
+  ); ///nadropdown is wgere im proud  from reactbootstrap page :)
 }
