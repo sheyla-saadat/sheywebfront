@@ -10,7 +10,8 @@ import PhiremovalAfterCare from "../ServicesDescriptions/PhiremovalAfterCare";
 
 export default function DetailServiceCompo(props) {
   const { name } = useParams();
-  ////// the process went is such that at first i tried to keep every thing together and partialy in the back end and here but since i had also after care  and one more part in every service which can be subjected to change depndes on the new info i decided to seperate the descriptin and the after care seperate so i can handle them easier in the future
+  ////// the process went is such that at first i tried to keep every thing together and partialy in the back end and here but since i had also after care  and one more part in every service which can be subjected to change depndes on the new info i decided to seperate the descriptin and the after care seperate so i can handle them easier in the future.
+
   return (
     <div>
       {name === "Phibrows" ? (

@@ -38,7 +38,7 @@ export const fetchServiceByName = (name) => {
     dispatch(fetchSpecificServiceByName(response.data));
   };
 };
-
+/////// since the Gallary dosnt do much I decided to keep the action in the same slice
 export const fetchGallaryData = (data) => {
   return {
     type: "GALLARY/fetchGallary",
@@ -49,7 +49,7 @@ export const fetchGallaryData = (data) => {
 export const fetchGallary = () => {
   return async (dispatch, getState) => {
     console.log("I'm here inside fetchGallaryData action");
-
+    ////// tested got it ..
     const response = await axios.get(`${apiUrl}/service/gallary`);
 
     console.log("All data from gallary:", response.data);

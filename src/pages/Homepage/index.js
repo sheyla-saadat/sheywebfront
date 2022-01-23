@@ -40,6 +40,15 @@ export default function Homepage() {
           src={aboutMe && aboutMe.imageUrl}
           alt="Sheyla Saadat"
         />
+        <br />
+        <br />
+        <video
+          src="https://res.cloudinary.com/dkdzt4lca/video/upload/v1642853159/Sheyla/video_yc6fbo.mov"
+          width="50%"
+          height="50%"
+          controls="controls"
+          // autoplay="true"
+        />
         <p>
           Do you also dream of perfect eyebrows that you no longer have to draw?
           Then I am your certified permanent makeup artist who can provide you

@@ -23,7 +23,7 @@ export default function Navigation() {
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav style={{ width: "100%" }} fill>
           <NavbarItem path="/" linkText="Home" />
-          <NavbarItem path="/reservation" linkText="Reservation" />
+          <NavbarItem path="/reservation" linkText="Book Now" />
 
           <NavDropdown title="Services" id="basic-nav-dropdown">
             <NavDropdown.Item href="/Phibrows">Phibrows</NavDropdown.Item>
@@ -31,11 +31,13 @@ export default function Navigation() {
             <NavDropdown.Item href="/Philashes">Philash</NavDropdown.Item>
           </NavDropdown>
 
-          <NavbarItem path="/gallary" linkText="Gallary" />
+          <NavbarItem path="/gallary" linkText="Gallery" />
 
           {loginLogoutControls}
         </Nav>
       </Navbar.Collapse>
     </Navbar>
-  ); ///nadropdown is wgere im proud  from reactbootstrap page :)
+  );
 }
+
+///nadropdown is wgere im proud  from reactbootstrap page :)

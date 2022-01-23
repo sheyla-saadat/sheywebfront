@@ -19,7 +19,7 @@ export default function HomepageCompo(props) {
       </Link>
 
       <Link to="/reservation">
-        <Button>Reservation</Button>
+        <Button>Book Now</Button>
       </Link>
     </div>
   );
