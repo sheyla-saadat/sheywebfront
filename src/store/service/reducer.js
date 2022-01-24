@@ -2,6 +2,7 @@ const initialState = {
   allServices: [], //empty array is due to the our data shape which was array
   specificService: [],
   gallaryData: [],
+  allReservation: [],
 };
 
 export default function reducer(state = initialState, action) {
@@ -21,6 +22,11 @@ export default function reducer(state = initialState, action) {
       return {
         ...state,
         gallaryData: [...action.payload.gallaryData],
+      };
+    case "RESERVATION/fetchAllReservation":
+      return {
+        ...state,
+        allReservation: [...action.payload.allReservation],
       };
 
     default:

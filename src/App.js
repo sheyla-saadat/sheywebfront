@@ -11,11 +11,12 @@ import Login from "./pages/Login";
 import { useDispatch, useSelector } from "react-redux";
 import { selectAppLoading } from "./store/appState/selectors";
 import { getUserWithStoredToken } from "./store/user/actions";
-import { Jumbotron } from "react-bootstrap";
+//import { Jumbotron } from "react-bootstrap";
 import Homepage from "./pages/Homepage";
 import DetailService from "./pages/DetailService";
 import Reservation from "./pages/Reservation";
 import Gallary from "./pages/Gallary";
+import AdminPage from "./pages/AdminPage";
 
 function App() {
   const dispatch = useDispatch();
@@ -34,6 +35,7 @@ function App() {
         <Route exact path="/" element={<Homepage />} />
         <Route exact path="/reservation" element={<Reservation />} />
         <Route exact path="/gallary" element={<Gallary />} />
+        <Route exact path="/admin" element={<AdminPage />} />
 
         <Route exact path="/:name" element={<DetailService />} />
         <Route exact path="/signup" element={<SignUp />} />
@@ -41,6 +43,7 @@ function App() {
       </Routes>
     </div>
   );
-} ///didnt have the exact on every rout in the begining which made the routs wired in the app . always keep the exact on
+}
 
 export default App;
+///didnt have the exact on every rout in the begining which made the routs wired in the app . always keep the exact on

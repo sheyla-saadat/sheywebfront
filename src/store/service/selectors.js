@@ -3,3 +3,5 @@ export const selectSpecificServices = (reduxState) =>
   reduxState.service.specificService;
 
 export const selectGallaryData = (reduxState) => reduxState.service.gallaryData;
+export const selectAllReservation = (reduxState) =>
+  reduxState.service.allReservation;
