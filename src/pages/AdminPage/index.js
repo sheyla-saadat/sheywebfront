@@ -1,25 +1,61 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchAllReservationForAdmin } from "../../store/service/actions";
-import { selectAllReservation } from "../../store/service/selectors";
+import {
+  fetchAllCalendar,
+  fetchAllReservationForAdmin,
+} from "../../store/service/actions";
 
-//import moment from "moment";
+import { selectToken } from "../../store/user/selectors";
+import { useNavigate } from "react-router-dom";
+import AdminPageCompo from "../../components/AdminPageCompo";
+import AdminAvailableDateForm from "../../components/AdminPageCompo/dateForm";
+import { Button } from "react-bootstrap";
 
 export default function AdminPage() {
-  const allReservation = useSelector(selectAllReservation);
-
+  const token = useSelector(selectToken);
+  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   useEffect(() => {
+    if (token === null) {
+      navigate("/");
+    }
     dispatch(fetchAllReservationForAdmin());
-  }, [dispatch]);
+    dispatch(fetchAllCalendar());
+  }, [dispatch, navigate, token]);
 
-  console.log("All reservations from reservation page are:", allReservation);
+  const [showCalendar, setShowCalendar] = useState(false);
+  const [showReservation, setShowReservation] = useState(false);
+
+  const reservationButton = () => {
+    setShowCalendar(false);
+    setShowReservation(!showReservation);
+  };
+
+  const calendarButton = () => {
+    setShowCalendar(!showCalendar);
+    setShowReservation(false);
+  };
+
   return (
     <div>
-      {allReservation.map((r, i) => (
-        <p>{r.dateTime}</p>
-      ))}
+      {!showCalendar ? (
+        <Button onClick={calendarButton}>Show Calendar</Button>
+      ) : (
+        <Button onClick={calendarButton}>Close</Button>
+      )}
+
+      <br />
+
+      {!showReservation ? (
+        <Button onClick={reservationButton}>Show Reservations</Button>
+      ) : (
+        <Button onClick={reservationButton}>Close</Button>
+      )}
+
+      {showCalendar ? <AdminAvailableDateForm /> : null}
+
+      {showReservation ? <AdminPageCompo /> : null}
     </div>
   );
 }

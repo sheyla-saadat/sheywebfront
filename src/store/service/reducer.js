@@ -3,6 +3,7 @@ const initialState = {
   specificService: [],
   gallaryData: [],
   allReservation: [],
+  allcalendar: [],
 };
 
 export default function reducer(state = initialState, action) {
@@ -27,6 +28,12 @@ export default function reducer(state = initialState, action) {
       return {
         ...state,
         allReservation: [...action.payload.allReservation],
+      };
+
+    case "CALENDAR/fetchDates":
+      return {
+        ...state,
+        allCalendar: [...action.payload.allCalendar],
       };
 
     default:

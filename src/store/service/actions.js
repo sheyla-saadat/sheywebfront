@@ -123,3 +123,92 @@ export const fetchAllReservationForAdmin = () => {
     dispatch(fetchReservation(response.data));
   };
 };
+
+export const updateReservation = (description, reservationId) => {
+  return async (dispatch, getState) => {
+    await axios.patch(`${apiUrl}/service/reservation`, {
+      description,
+      isConfirmed: true,
+      reservationId,
+    });
+
+    const response = await axios.get(`${apiUrl}/service/reservation`);
+
+    dispatch(fetchAllReservationForAdmin(response.data));
+    dispatch(
+      showMessageWithTimeout(
+        "success",
+        false,
+        "Description in reservation table is updated!",
+        3000
+      )
+    );
+  };
+};
+
+export const fetchCalender = (data) => {
+  return {
+    type: "CALENDAR/fetchDates",
+    payload: data,
+  };
+};
+
+export const fetchAllCalendar = () => {
+  return async (dispatch, getState) => {
+    console.log("I'm here inside fetchAllCalendar action");
+
+    const response = await axios.get(`${apiUrl}/service/calendar`);
+
+    console.log("All data from calendar:", response.data);
+
+    dispatch(fetchCalender(response.data));
+  };
+};
+
+export const setCalendar = (dateTime) => {
+  return async (dispatch, getState) => {
+    const token = selectToken(getState());
+
+    try {
+      console.log("I'm here inside setCalendar action");
+
+      const response = await axios.post(
+        `${apiUrl}/service/calendar`,
+        {
+          dateTime,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      console.log("Response of calendar is", response.data);
+
+      dispatch(
+        showMessageWithTimeout(
+          "success",
+          false,
+          "New calendar date and time created!",
+          1500
+        )
+      );
+
+      dispatch(fetchAllCalendar());
+    } catch (error) {
+      if (error.response) {
+        console.log(error.response);
+
+        dispatch(
+          showMessageWithTimeout(
+            "danger",
+            false,
+            "The time is not set yet",
+            3000
+          )
+        );
+      }
+    }
+  };
+};

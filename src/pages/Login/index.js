@@ -17,8 +17,8 @@ export default function SignUp() {
 
   useEffect(() => {
     if (token !== null) {
-      navigate(-1);
-    } //// again the same trick for one nav before shift
+      window.location.reload(navigate(-1));
+    }
   }, [token, navigate]);
 
   function submitForm(event) {
