@@ -1,16 +1,20 @@
 import React, { useEffect } from "react";
-import { Button } from "react-bootstrap";
+import { Button, Col, Container, Jumbotron, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import HomepageCompo from "../../components/HomepageCompo";
 import { fetchAllService } from "../../store/service/actions";
 import { selectAllServices } from "../../store/service/selectors";
+import "./homepage.css";
+
+import Aos from "aos";
+import "aos/dist/aos.css";
 
 export default function Homepage() {
   const dispatch = useDispatch();
-  /// didint have the ()faced error lesson learned..now working only need the rout so back to backend.
 
   useEffect(() => {
+    Aos.init({ duration: 3000 });
     dispatch(fetchAllService());
   }, [dispatch]);
 
@@ -18,64 +22,91 @@ export default function Homepage() {
 
   console.log("AllService are:", allServices);
 
-  // const aboutMe = allServices[0];
-  ///// first did this to only get the first element but then from stackoverflow got .shift method tested it seems like it worked source:https://stackoverflow.com/questions/50161658/remove-first-item-of-array-in-react-state/50161758   remve first element from an array
+  const aboutMe = allServices[0];
 
-  const aboutMe = allServices.shift();
   console.log("aboutMe is:", aboutMe);
 
-  // console.log(
-  //   "Allservices are fetched from the store via selector:",
-  //   allServices
-  // );
-
-  /// ivegot problems with the url couldnt load so back to the database change the url source.then it worked .// src={aboutMe && aboutMe.imageUrl} before doing this it was aboutme.imageurl it said its undifined then with && accepted.
-
   return (
-    <div>
-      <div style={{ textAlign: "center" }}>
-        <h1> {aboutMe && aboutMe.serviceName} </h1>
-        <img
-          style={{ width: "50%", height: "50%" }}
-          src={aboutMe && aboutMe.imageUrl}
-          alt="Sheyla Saadat"
-        />
-        <br />
-        <br />
-        <video
-          src="https://res.cloudinary.com/dkdzt4lca/video/upload/v1642853159/Sheyla/video_yc6fbo.mov"
-          width="50%"
-          height="50%"
-          controls="controls"
-          // autoplay="true"
-        />
-        <p>
-          Do you also dream of perfect eyebrows that you no longer have to draw?
-          Then I am your certified permanent makeup artist who can provide you
-          with the latest technique using PMU device, and 100 percent natural
-          pigment which is applied in the first layer of your skin. This
-          treatment is 100% safe and does not involve any risks because MP-Brows
-          has the very latest equipment.
-          <br />
-          <br />
-          With permanent make up I create full, natural and beautiful eyebrows.
-          It is a godsend for anyone who spends a lot of time drawing the
-          eyebrows. With PMU you will save lots of time and will look beautiful
-          at any time of the day.
-        </p>
-        <Link to={"/gallary"}>
-          <Button>Gallary</Button>
-        </Link>
-      </div>
+    <div style={{ backgroundColor: "black" }}>
+      <Jumbotron style={{ marginBottom: "20px", paddingTop: "50px" }}>
+        <Row className="firstJumbotron" id="animationOne">
+          <Col data-aos="fade-right" md="5">
+            <Container>
+              <img
+                style={{ width: "100%", height: "100%" }}
+                src={aboutMe && aboutMe.imageUrl}
+                alt="Sheyla Saadat"
+              />
+            </Container>
+          </Col>
+          <Col
+            data-aos="fade-left"
+            md="5"
+            style={{
+              textAlign: "left",
+              paddingLeft: "60px",
+            }}
+          >
+            <h1 id="topic">Wat is permanente make up?</h1>
+            <br />
+            <p id="textSetting">
+              Do you also dream of perfect eyebrows that you no longer have to
+              draw? Then I am your certified permanent makeup artist who can
+              provide you with the latest technique using PMU device, and 100
+              percent natural pigment which is applied in the first layer of
+              your skin. This treatment is 100% safe and does not involve any
+              risks because MP-Brows has the very latest equipment.
+              <br />
+              With permanent make up I create full, natural and beautiful
+              eyebrows. It is a godsend for anyone who spends a lot of time
+              drawing the eyebrows. With PMU you will save lots of time and will
+              look beautiful at any time of the day.
+            </p>
+          </Col>
+        </Row>
 
-      {allServices.map((service) => (
-        <HomepageCompo
-          id={service.id}
-          key={service.key}
-          imageUrl={service.imageUrl}
-          serviceName={service.serviceName}
-        />
-      ))}
+        <Row style={{ paddingTop: "50px" }}>
+          <Col
+            data-aos="fade-up"
+            style={{ textAlign: "center", border: "solid,3px,red" }}
+            colspan="2"
+          >
+            <video
+              className="media-box"
+              src="https://res.cloudinary.com/dkdzt4lca/video/upload/v1642853159/Sheyla/video_yc6fbo.mov"
+              width="75%"
+              height="75%"
+              controls="controls"
+              // autoplay="true"
+            />
+          </Col>
+        </Row>
+      </Jumbotron>
+
+      <Jumbotron>
+        <Row className="firstJumbotron">
+          {allServices.map((service, i) =>
+            service.id === 1 ? null : (
+              <Col
+                data-aos="fade-right"
+                md="3"
+                style={{ textAlign: "center", animationDelay: `${150 * i}ms` }}
+              >
+                <HomepageCompo
+                  id={service.id}
+                  key={service.key}
+                  imageUrl={service.imageUrl}
+                  serviceName={service.serviceName}
+                />
+              </Col>
+            )
+          )}
+        </Row>
+
+        <Row style={{ paddingTop: "50px" }}>
+          <Col></Col>
+        </Row>
+      </Jumbotron>
     </div>
   );
 }

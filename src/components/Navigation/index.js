@@ -9,18 +9,30 @@ import LoggedIn from "./LoggedIn";
 import LoggedOut from "./LoggedOut";
 import { NavDropdown } from "react-bootstrap";
 
+import "./navigation.css";
+
 export default function Navigation() {
   const token = useSelector(selectToken);
   const user = useSelector(selectUser);
+
+  const phi = () => {
+    return (
+      <img
+        style={{ width: "30px", height: "30px" }}
+        src="https://res.cloudinary.com/dkdzt4lca/image/upload/v1643146266/Sheyla/a91e524e73508bb1d4b03fd22756e041_v3fp82.png"
+        alt=""
+      />
+    );
+  };
 
   const { isAdmin } = user;
 
   const loginLogoutControls = token ? <LoggedIn /> : <LoggedOut />;
 
   return (
-    <Navbar bg="light" expand="lg">
-      <Navbar.Brand as={NavLink} to="/">
-        SheyBrows
+    <Navbar className="bakground" bg="light" expand="lg">
+      <Navbar.Brand style={{ paddingLeft: "30px" }} as={NavLink} to="/">
+        {phi()} SheyBrows
       </Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
@@ -46,5 +58,3 @@ export default function Navigation() {
     </Navbar>
   );
 }
-
-///nadropdown is wgere im proud  from reactbootstrap page :)

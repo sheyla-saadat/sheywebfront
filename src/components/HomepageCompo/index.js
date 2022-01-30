@@ -1,25 +1,42 @@
 import React from "react";
-import { Button } from "react-bootstrap";
+import { Button, Carousel, Figure } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
+import "./homeCompo.css";
+
 export default function HomepageCompo(props) {
+  const phi = () => {
+    return (
+      <img
+        style={{ width: "30px", height: "30px" }}
+        src="https://res.cloudinary.com/dkdzt4lca/image/upload/v1643146266/Sheyla/a91e524e73508bb1d4b03fd22756e041_v3fp82.png"
+        alt=""
+      />
+    );
+  };
   return (
     <div>
-      <h2> {props.serviceName} </h2>
-      {/* now pictures are also clickable  */}
-      <Link to={`${props.serviceName}`}>
-        <img
-          style={{ width: "25%", height: "25%" }}
-          src={props.imageUrl}
-          alt={props.serviceName}
-        />
-      </Link>
-      <Link to={`${props.serviceName}`}>
-        <Button>Read more</Button>
-      </Link>
+      <div id="wrapper">
+        <div class="image-container">
+          <img src={props.imageUrl} alt="" />
+
+          {/* <Link to={props.serviceName}>
+            <img src={props.imageUrl} alt="" />
+          </Link> */}
+          <div class="image-caption">
+            <h1 style={{ border: "solid, 10px, white" }}>
+              {props.serviceName}
+            </h1>
+          </div>
+        </div>
+      </div>
+      <br />
 
       <Link to="/reservation">
-        <Button>Book Now</Button>
+        <Button id="homeButton">{phi()}Book Now</Button>
+      </Link>
+      <Link to={`${props.serviceName}`}>
+        <Button id="homeButton">{phi()}Read more</Button>
       </Link>
     </div>
   );

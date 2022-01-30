@@ -5,9 +5,11 @@ import { fetchAllCalendar, makeReservation } from "../../store/service/actions";
 import { selectUser } from "../../store/user/selectors";
 import moment from "moment";
 import { selectAllCalendar } from "../../store/service/selectors";
+import { useNavigate } from "react-router-dom";
 
 export default function Reservation() {
   const user = useSelector(selectUser);
+  const navigate = useNavigate();
 
   const allCalendar = useSelector(selectAllCalendar);
 
@@ -30,10 +32,10 @@ export default function Reservation() {
   // const dateTime = `${date} ${time}`;
   // console.log("dateTime is:", dateTime);
 
-  const bookFunction = (dateTime) => {
+  const bookFunction = (dateTime, id) => {
     console.log("Im clicked");
 
-    dispatch(makeReservation(serviceId, dateTime));
+    dispatch(makeReservation(serviceId, dateTime, id));
   };
 
   useEffect(() => {
@@ -47,63 +49,8 @@ export default function Reservation() {
   return (
     <div>
       <h1> Book an Appointment</h1>
+
       <Container>
-        <Table striped bordered hover size="sm">
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>Date and time</th>
-              <th>Choose the service</th>
-              <th>Reserved</th>
-            </tr>
-          </thead>
-          <tbody>
-            {allCalendar.map((r, i) => (
-              <tr>
-                <td>{i + 1}</td>
-                <td>{convertedDates(r.time)}</td>
-                <td>
-                  <Form.Group as={Col} controlId="formState">
-                    <Form.Control
-                      as="select"
-                      name="state"
-                      placeholder="Choose your prefered service"
-                      onChange={(event) => {
-                        event.target.value === "Phibrows"
-                          ? setServiceId(2)
-                          : event.target.value === "Philashes"
-                          ? setServiceId(4)
-                          : setServiceId(3);
-                      }}
-                    >
-                      <option value="">Services ...</option>
-
-                      <option value="Phibrows">Phibrows</option>
-                      <option value="Philashes">Philashes</option>
-                      <option value="Phiremoval">Phiremoval</option>
-                    </Form.Control>
-                  </Form.Group>
-                </td>
-                <td>
-                  {r.isBooked === null ? (
-                    <Button
-                      onClick={() => {
-                        bookFunction(r.time);
-                      }}
-                    >
-                      Reserve
-                    </Button>
-                  ) : (
-                    "Reserved"
-                  )}
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </Table>
-      </Container>
-
-      {/* <Container>
         <Form as={Col} md={{ span: 6, offset: 3 }} className="mt-5">
           <Form.Group as={Col} controlId="formState">
             <img
@@ -112,16 +59,80 @@ export default function Reservation() {
               alt=""
             />
           </Form.Group>
+        </Form>
+      </Container>
 
-          <br />
+      {token === null ? (
+        <Form.Group as={Col} controlId="formState">
+          <p>
+            <b>***</b> Please note if you are already user you have to{" "}
+            <a href="/login">LOGIN</a> to be able to see the available date and
+            time, if not no worries, you can always <a href="/signup">SINGUP</a>
+          </p>
+        </Form.Group>
+      ) : (
+        <Container>
+          <Table striped bordered hover size="sm">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Date and time</th>
+                <th>Choose the service</th>
+                <th>Reserved</th>
+              </tr>
+            </thead>
+            <tbody>
+              {allCalendar.map((r, i) => (
+                <tr>
+                  <td>{i + 1}</td>
+                  <td>{convertedDates(r.time)}</td>
+                  <td>
+                    <Form.Group as={Col} controlId="formState">
+                      <Form.Control
+                        as="select"
+                        name="state"
+                        placeholder="Choose your prefered service"
+                        onChange={(event) => {
+                          event.target.value === "Phibrows"
+                            ? setServiceId(2)
+                            : event.target.value === "Philashes"
+                            ? setServiceId(4)
+                            : setServiceId(3);
+                        }}
+                      >
+                        <option value="">Services ...</option>
 
-          <Form.Group as={Col} controlId="formState">
-            <p>
-              <b>***</b> Please note if you are already user you have to{" "}
-              <a href="/login">LOGIN</a>, if not no worries, you can always{" "}
-              <a href="/signup">SINGUP</a>
-            </p>
-          </Form.Group>
+                        <option value="Phibrows">Phibrows</option>
+                        <option value="Philashes">Philashes</option>
+                        <option value="Phiremoval">Phiremoval</option>
+                      </Form.Control>
+                    </Form.Group>
+                  </td>
+                  <td>
+                    {token !== null ? (
+                      r.isBooked === null || r.isBooked === false ? (
+                        <Button
+                          onClick={() => {
+                            bookFunction(r.time, r.id);
+                          }}
+                        >
+                          Reserve
+                        </Button>
+                      ) : (
+                        "Reserved"
+                      )
+                    ) : (
+                      "Login to see"
+                    )}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </Table>
+        </Container>
+      )}
+
+      {/* 
 
           <br />
 

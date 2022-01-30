@@ -1,0 +1,56 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  color: white;
+  font-family: "Indie Flower", cursive;
+}
+
+#topic {
+  color: rgb(143, 111, 0);
+  font-weight: bolder;
+}
+
+.firstJumbotron {
+  /* display: flex; */
+  vertical-align: middle;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+}
+
+#textSetting {
+  font-size: 27px;
+  line-height: 35px;
+  word-spacing: 1px;
+  font-weight: lighter;
+  text-align: justify;
+}
+
+.media-box {
+  margin: auto;
+  box-shadow: 80px 80px 80px rgba(6, 6, 7, 0.2);
+  padding: 3px;
+  border-radius: 25px;
+  border-color: rgb(143, 111, 0);
+  border-style: solid;
+  overflow: hidden;
+  border-width: 5px;
+}
+
+#servicePhoto {
+  animation: kitslideleft 1s ease;
+  animation-fill-mode: backwards;
+  margin: auto;
+}
+
+@keyframes kitslideleft {
+  0% {
+    opacity: 0;
+    transform: translate(-5rem, 0);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(0, 0);
+  }
+}

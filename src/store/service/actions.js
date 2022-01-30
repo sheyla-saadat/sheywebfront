@@ -17,22 +17,25 @@ export const fetchService = (data) => {
 
 export const fetchAllService = () => {
   return async (dispatch, getState) => {
-    console.log("I'm here inside fetchAllServices action"); // tested raw working///after back rout seen the data in the consol.
+    console.log("I'm here inside fetchAllServices action");
+    dispatch(appLoading());
 
     const response = await axios.get(`${apiUrl}/service`);
 
-    console.log("All data from service:", response.data); // from now on im interested only about .data and not the otheres .now i ask him to dspatch fetchservive but this time get response.data in the payload instead of data .now to the reducer.....
+    console.log("All data from service:", response.data);
 
     dispatch(fetchService(response.data));
+    dispatch(appDoneLoading());
   };
 };
+
 export const fetchSpecificServiceByName = (data) => {
   return {
     type: "SERVICE/fetchServiceByName",
     payload: data,
   };
 };
-///// this one is the same as we were doing befor with :id
+
 export const fetchServiceByName = (name) => {
   return async (dispatch, getState) => {
     console.log("I'm here inside fetchSpecificServiceByName action");
@@ -44,7 +47,7 @@ export const fetchServiceByName = (name) => {
     dispatch(fetchSpecificServiceByName(response.data));
   };
 };
-/////// since the Gallary dosnt do much I decided to keep the action in the same slice
+
 export const fetchGallaryData = (data) => {
   return {
     type: "GALLARY/fetchGallary",
@@ -55,25 +58,32 @@ export const fetchGallaryData = (data) => {
 export const fetchGallary = () => {
   return async (dispatch, getState) => {
     console.log("I'm here inside fetchGallaryData action");
-    ////// tested got it ..
+
     const response = await axios.get(`${apiUrl}/service/gallary`);
 
     console.log("All data from gallary:", response.data);
 
     dispatch(fetchGallaryData(response.data));
   };
-}; //// the error i had in here was solved in the back by changing the place of the dynamic rout with this one . lesson learned was to always keep the dynamic routs in the back  the last one . thats it :)))
-export const makeReservation = (serviceId, dateTime) => {
+};
+
+export const makeReservation = (serviceId, dateTime, id) => {
   return async (dispatch, getState) => {
     const token = selectToken(getState());
 
     try {
       console.log("I'm here inside makeReservation action");
 
+      await axios.patch(`${apiUrl}/service/calendar`, {
+        isBooked: true,
+        id,
+      });
+
       const response = await axios.post(
         `${apiUrl}/service/reservation`,
         {
           serviceId,
+          // formattedDates,
           dateTime,
         },
         {
@@ -84,6 +94,8 @@ export const makeReservation = (serviceId, dateTime) => {
       );
 
       console.log("Response of make reservation is", response.data);
+
+      dispatch(fetchAllCalendar());
 
       dispatch(
         showMessageWithTimeout(

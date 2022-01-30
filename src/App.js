@@ -11,7 +11,6 @@ import Login from "./pages/Login";
 import { useDispatch, useSelector } from "react-redux";
 import { selectAppLoading } from "./store/appState/selectors";
 import { getUserWithStoredToken } from "./store/user/actions";
-//import { Jumbotron } from "react-bootstrap";
 import Homepage from "./pages/Homepage";
 import DetailService from "./pages/DetailService";
 import Reservation from "./pages/Reservation";

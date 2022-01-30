@@ -5,7 +5,7 @@ import {
   fetchAllReservationForAdmin,
 } from "../../store/service/actions";
 
-import { selectToken } from "../../store/user/selectors";
+import { selectToken, selectUser } from "../../store/user/selectors";
 import { useNavigate } from "react-router-dom";
 import AdminPageCompo from "../../components/AdminPageCompo";
 import AdminAvailableDateForm from "../../components/AdminPageCompo/dateForm";
@@ -13,11 +13,12 @@ import { Button } from "react-bootstrap";
 
 export default function AdminPage() {
   const token = useSelector(selectToken);
+  const user = useSelector(selectUser);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (token === null) {
+    if (token === null || user.isAdmin !== true) {
       navigate("/");
     }
     dispatch(fetchAllReservationForAdmin());

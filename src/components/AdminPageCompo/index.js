@@ -55,6 +55,8 @@ export default function AdminPageCompo() {
             <th>Phone</th>
             <th>Service</th>
             <th>Date&Time</th>
+            <th>Pigement</th>
+            <th>Status</th>
           </tr>
         </thead>
         <tbody>
@@ -66,7 +68,7 @@ export default function AdminPageCompo() {
               <td>{r.user.phone}</td>
               <td>{condition(r.serviceId)}</td>
               <td>{convertedDates(r.time)}</td>
-              <td>{r.id}</td>
+              <td>{r.description}</td>
               <td>
                 {r.isConfirmed ? (
                   "✅"
