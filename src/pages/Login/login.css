@@ -1,0 +1,36 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  color: white;
+  font-family: "Indie Flower", cursive;
+}
+
+#homeButton {
+  width: 155px;
+  transition: 1s;
+  margin: 5px 5px;
+  background-color: rgb(143, 111, 0);
+  border-color: rgb(143, 111, 0);
+}
+
+#homeButton:hover {
+  transition: 1s;
+  transform: scale(1.1);
+}
+
+#homeButton:hover::after {
+  content: " →";
+}
+
+.homeanchorStyle {
+  color: aliceblue;
+  text-decoration: none;
+  transition: 1s;
+}
+
+.homeanchorStyle:hover {
+  color: rgb(143, 111, 0);
+  text-decoration: none;
+  cursor: pointer;
+}

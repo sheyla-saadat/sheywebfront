@@ -1,0 +1,72 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  color: white;
+  font-family: "Indie Flower", cursive;
+}
+
+#topic {
+  color: rgb(143, 111, 0);
+  font-weight: bolder;
+  margin: auto;
+  padding-top: 50px;
+}
+
+.firstJumbotron {
+  vertical-align: middle;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+}
+
+#textSettingReservation {
+  font-size: 27px;
+  line-height: 35px;
+  word-spacing: 1px;
+  font-weight: lighter;
+  text-align: justify;
+  margin: auto 200px;
+}
+
+.anchorStyle {
+  text-decoration: none;
+  color: rgb(143, 111, 0);
+  transition: 1s;
+}
+
+.anchorStyle:hover {
+  color: aliceblue;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.firstContainer {
+  margin: auto, 200px;
+  vertical-align: middle;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+}
+
+td {
+  font-size: 20px;
+}
+
+h3 {
+  font-size: 50px;
+  font-weight: bolder;
+}
+
+#reserveButton {
+  width: 155px;
+  transition: 1s;
+  margin: 0px 5px;
+  background-color: rgb(143, 111, 0);
+  border-color: rgb(143, 111, 0);
+}
+
+#reserveButton:hover {
+  transition: 1s;
+  transform: scale(1.1);
+}

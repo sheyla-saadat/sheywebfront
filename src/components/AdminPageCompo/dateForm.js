@@ -1,9 +1,13 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button, Col, Container, Form, Table } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { setCalendar } from "../../store/service/actions";
 import { selectAllCalendar } from "../../store/service/selectors";
 import moment from "moment";
+
+import "./adminCompo.css";
+import Aos from "aos";
+import "aos/dist/aos.css";
 
 export default function AdminAvailableDateForm() {
   const dispatch = useDispatch();
@@ -28,10 +32,14 @@ export default function AdminAvailableDateForm() {
     return moment(date).format("LLLL");
   };
 
+  useEffect(() => {
+    Aos.init({ duration: 2000 });
+  }, []);
+
   return (
-    <div>
-      <Container>
-        <Table striped bordered hover size="sm">
+    <div style={{ backgroundColor: "black" }}>
+      <Container id="adminCalendertable">
+        <Table striped borderless hover variant="dark" size="sm">
           <thead>
             <tr>
               <th>#</th>
@@ -51,10 +59,14 @@ export default function AdminAvailableDateForm() {
         </Table>
       </Container>
 
-      <h1> Set Reservation Calendar</h1>
-      <Container>
+      <Container style={{ paddingTop: "20px" }}>
         <Form as={Col} md={{ span: 6, offset: 3 }} className="mt-5">
-          <Form.Group controlId="formBasicName">
+          <Form.Group>
+            <h1 data-aos="flip-up"> Set Reservation Calendar</h1>
+          </Form.Group>
+          <br />
+
+          <Form.Group data-aos="flip-up" controlId="formBasicName">
             <Form.Label>Select date</Form.Label>
             <Form.Control
               value={date}
@@ -65,7 +77,7 @@ export default function AdminAvailableDateForm() {
             />
           </Form.Group>
 
-          <Form.Group controlId="formBasicName">
+          <Form.Group data-aos="flip-up" controlId="formBasicName">
             <Form.Label>Select time</Form.Label>
             <Form.Control
               value={time}
@@ -78,8 +90,10 @@ export default function AdminAvailableDateForm() {
 
           <br />
 
-          <Form.Group controlId="formBasicName">
-            <Button onClick={confirmedDateTime}>Confirm Date & Time</Button>
+          <Form.Group data-aos="flip-up" controlId="formBasicName">
+            <Button id="confirmButton" onClick={confirmedDateTime}>
+              Confirm Date & Time
+            </Button>
           </Form.Group>
         </Form>
       </Container>

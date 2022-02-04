@@ -28,7 +28,7 @@ export const logOut = () => ({ type: LOG_OUT });
 
 export const signUp = (name, email, password, phone) => {
   return async (dispatch, getState) => {
-    dispatch(appLoading());
+    //dispatch(appLoading());
     try {
       const response = await axios.post(`${apiUrl}/auth/signup`, {
         name,
@@ -39,7 +39,7 @@ export const signUp = (name, email, password, phone) => {
 
       dispatch(loginSuccess(response.data));
       dispatch(showMessageWithTimeout("success", true, "account created"));
-      dispatch(appDoneLoading());
+      // dispatch(appDoneLoading());
     } catch (error) {
       if (error.response) {
         console.log(error.response.data.message);
@@ -48,7 +48,7 @@ export const signUp = (name, email, password, phone) => {
         console.log(error.message);
         dispatch(setMessage("danger", true, error.message));
       }
-      dispatch(appDoneLoading());
+      // dispatch(appDoneLoading());
     }
   };
 };

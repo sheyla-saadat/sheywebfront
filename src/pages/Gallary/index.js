@@ -15,18 +15,10 @@ export default function Gallary() {
   useEffect(() => {
     dispatch(fetchGallary());
   }, [dispatch]);
-  /////////first I decided to map the data here then use it in the componenet but then since I decided to bring carousel which could be used in more than one page in the future I decided to have it done in a seperate component and kep this one as the parent .
-  return (
-    <div>
-      <CarouselComp />
 
-      {/* {gallaryData.map((item) => (
-        <CarouselComp
-          key={item.id}
-          id={item.serviceId}
-          imageUrl={item.imageUrl}
-        />
-      ))} */}
+  return (
+    <div style={{ backgroundColor: "black" }}>
+      <CarouselComp />
     </div>
   );
 }

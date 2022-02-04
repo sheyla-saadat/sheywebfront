@@ -1,12 +1,20 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { updateReservation } from "../../store/service/actions";
 import { selectAllReservation } from "../../store/service/selectors";
 import moment from "moment";
 
+import "./adminCompo.css";
+import Aos from "aos";
+import "aos/dist/aos.css";
+
 import { Button, Container, Form, Table } from "react-bootstrap";
 
 export default function AdminPageCompo() {
+  useEffect(() => {
+    Aos.init({ duration: 2000 });
+  }, []);
+
   const allReservation = useSelector(selectAllReservation);
 
   const dispatch = useDispatch();
@@ -44,19 +52,36 @@ export default function AdminPageCompo() {
   };
 
   console.log("All reservations from reservation page are:", allReservation);
+
   return (
-    <Container>
-      <Table striped bordered hover size="sm">
+    <Container id="adminReservationtable" style={{ backgroundColor: "black" }}>
+      <Table striped borderless hover variant="dark" size="sm">
         <thead>
           <tr>
-            <th>#</th>
-            <th>Customer Name</th>
-            <th>Email</th>
-            <th>Phone</th>
-            <th>Service</th>
-            <th>Date&Time</th>
-            <th>Pigement</th>
-            <th>Status</th>
+            <th>
+              <h4>#</h4>
+            </th>
+            <th>
+              <h4>Customer Name</h4>
+            </th>
+            <th>
+              <h4>Email</h4>
+            </th>
+            <th>
+              <h4>Phone</h4>
+            </th>
+            <th>
+              <h4>Service</h4>
+            </th>
+            <th>
+              <h4>Date&Time</h4>
+            </th>
+            <th>
+              <h4>Pigement</h4>
+            </th>
+            <th>
+              <h4>Status</h4>
+            </th>
           </tr>
         </thead>
         <tbody>
@@ -73,8 +98,11 @@ export default function AdminPageCompo() {
                 {r.isConfirmed ? (
                   "✅"
                 ) : (
-                  <Button onClick={() => showDescriptionFrom(r.id)}>
-                    Done
+                  <Button
+                    id="tableButton"
+                    onClick={() => showDescriptionFrom(r.id)}
+                  >
+                    {!form || r.id !== reservationId ? "Done" : "Close"}
                   </Button>
                 )}
               </td>
@@ -86,7 +114,11 @@ export default function AdminPageCompo() {
       <br />
       {!form ? null : (
         <div>
-          <Form.Group controlId="formBasicEmail">
+          <Form.Group
+            id="description"
+            // data-aos="flip-up"
+            controlId="formBasicEmail"
+          >
             <Form.Control
               // value={email}
               onChange={(event) => setDescription(event.target.value)}
@@ -96,7 +128,9 @@ export default function AdminPageCompo() {
           </Form.Group>
           <br />
 
-          <Button onClick={doneForm}>Sumbit the description</Button>
+          <Button id="submitButton" onClick={doneForm}>
+            Sumbit the description
+          </Button>
         </div>
       )}
     </Container>

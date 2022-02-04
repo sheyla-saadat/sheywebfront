@@ -6,16 +6,15 @@
   font-family: "Indie Flower", cursive;
 }
 
-#topic {
-  color: rgb(143, 111, 0);
-  font-weight: bolder;
-}
-
-.firstJumbotron {
+.firstContainer {
+  /* display: flex; */
   vertical-align: middle;
   text-align: center;
   justify-content: center;
   align-items: center;
+  /* padding-top: 50px; */
+  animation: photoslideleft 2s ease;
+  animation-fill-mode: backwards;
 }
 
 #textSetting {
@@ -24,10 +23,11 @@
   word-spacing: 1px;
   font-weight: lighter;
   text-align: justify;
+  margin: auto;
 }
 
-.media-box {
-  margin: auto;
+.carouselmedia-box {
+  margin: 50px auto auto;
   box-shadow: 80px 80px 80px rgba(6, 6, 7, 0.2);
   padding: 3px;
   border-radius: 25px;
@@ -37,15 +37,10 @@
   border-width: 5px;
 }
 
-#servicePhoto {
-  animation: kitslideleft 1s ease;
-  animation-fill-mode: backwards;
-}
-
-@keyframes kitslideleft {
+@keyframes photoslideleft {
   0% {
     opacity: 0;
-    transform: translate(-5rem, 0);
+    transform: translate(0, -5rem);
   }
   100% {
     opacity: 1;

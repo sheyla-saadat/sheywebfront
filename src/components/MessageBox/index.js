@@ -12,6 +12,9 @@ export default function MessageBox() {
 
   return (
     <Alert
+      style={{
+        position: "fixed",
+      }}
       show={showMessage}
       variant={message.variant}
       dismissible={message.dismissable}

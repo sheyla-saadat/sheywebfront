@@ -1,15 +1,24 @@
 import React, { useEffect, useState } from "react";
-import { Button, Col, Container, Form, Table } from "react-bootstrap";
+import {
+  Button,
+  Col,
+  Container,
+  Form,
+  Jumbotron,
+  Table,
+} from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchAllCalendar, makeReservation } from "../../store/service/actions";
 import { selectUser } from "../../store/user/selectors";
 import moment from "moment";
 import { selectAllCalendar } from "../../store/service/selectors";
-import { useNavigate } from "react-router-dom";
+
+import "./Reservation.css";
+import Aos from "aos";
+import "aos/dist/aos.css";
 
 export default function Reservation() {
   const user = useSelector(selectUser);
-  const navigate = useNavigate();
 
   const allCalendar = useSelector(selectAllCalendar);
 
@@ -39,6 +48,7 @@ export default function Reservation() {
   };
 
   useEffect(() => {
+    Aos.init({ duration: 3000 });
     dispatch(fetchAllCalendar());
   }, [dispatch]);
 
@@ -47,10 +57,12 @@ export default function Reservation() {
   };
 
   return (
-    <div>
-      <h1> Book an Appointment</h1>
+    <div style={{ backgroundColor: "black" }}>
+      <Jumbotron className="firstJumbotron" data-aos="fade-left">
+        <h1 id="topic"> Book an Appointment</h1>
+      </Jumbotron>
 
-      <Container>
+      <Container className="firstJumbotron" data-aos="fade-right">
         <Form as={Col} md={{ span: 6, offset: 3 }} className="mt-5">
           <Form.Group as={Col} controlId="formState">
             <img
@@ -63,22 +75,38 @@ export default function Reservation() {
       </Container>
 
       {token === null ? (
-        <Form.Group as={Col} controlId="formState">
-          <p>
+        <Form.Group as={Col} controlId="formState" data-aos="fade-up">
+          <p id="textSettingReservation">
             <b>***</b> Please note if you are already user you have to{" "}
-            <a href="/login">LOGIN</a> to be able to see the available date and
-            time, if not no worries, you can always <a href="/signup">SINGUP</a>
+            <a className="anchorStyle" href="/login">
+              LOGIN
+            </a>{" "}
+            to be able to see the available date and time, if not no worries,
+            you can always{" "}
+            <a className="anchorStyle" href="/signup">
+              SINGUP
+            </a>
+            <br />
+            <br />
           </p>
         </Form.Group>
       ) : (
-        <Container>
-          <Table striped bordered hover size="sm">
+        <Container className="firstContainer" data-aos="flip-up">
+          <Table striped borderless hover variant="dark" size="sm">
             <thead>
               <tr>
-                <th>#</th>
-                <th>Date and time</th>
-                <th>Choose the service</th>
-                <th>Reserved</th>
+                <th>
+                  <h3>#</h3>
+                </th>
+                <th>
+                  <h3>Date and time</h3>
+                </th>
+                <th>
+                  <h3>Choose the service</h3>
+                </th>
+                <th>
+                  <h3>Reserved</h3>
+                </th>
               </tr>
             </thead>
             <tbody>
@@ -97,7 +125,9 @@ export default function Reservation() {
                             ? setServiceId(2)
                             : event.target.value === "Philashes"
                             ? setServiceId(4)
-                            : setServiceId(3);
+                            : event.target.value === "Phiremoval"
+                            ? setServiceId(3)
+                            : setServiceId(null);
                         }}
                       >
                         <option value="">Services ...</option>
@@ -112,6 +142,7 @@ export default function Reservation() {
                     {token !== null ? (
                       r.isBooked === null || r.isBooked === false ? (
                         <Button
+                          id="reserveButton"
                           onClick={() => {
                             bookFunction(r.time, r.id);
                           }}
@@ -131,66 +162,8 @@ export default function Reservation() {
           </Table>
         </Container>
       )}
-
-      {/* 
-
-          <br />
-
-          <Form.Group as={Col} controlId="formState">
-            <Form.Label>Select Your Service</Form.Label>
-            <Form.Control
-              as="select"
-              name="state"
-              // defaultValue={""}
-              placeholder="Choose your prefered service"
-              // onChange={(event) => setService(event.target.value)}
-
-              // to prevent the too many loop error, I used the condition here
-              onChange={(event) => {
-                event.target.value === "Phibrows"
-                  ? setServiceId(2)
-                  : event.target.value === "Philashes"
-                  ? setServiceId(4)
-                  : setServiceId(3);
-              }}
-            >
-              <option value="">Services ...</option>
-
-              <option value="Phibrows">Phibrows</option>
-              <option value="Philashes">Philashes</option>
-              <option value="Phiremoval">Phiremoval</option>
-            </Form.Control>
-          </Form.Group>
-
-          <Form.Group controlId="formBasicName">
-            <Form.Label>Select your preferred date</Form.Label>
-            <Form.Control
-              value={date}
-              onChange={(event) => setDate(event.target.value)}
-              type="date"
-              placeholder="Enter name"
-              required
-            />
-          </Form.Group>
-
-          <Form.Group controlId="formBasicName">
-            <Form.Label>Select your preferred time</Form.Label>
-            <Form.Control
-              value={time}
-              onChange={(event) => setTime(event.target.value)}
-              type="time"
-              placeholder="Enter name"
-              required
-            />
-          </Form.Group>
-
-          <br />
-
-          <Form.Group controlId="formBasicName">
-            <Button onClick={bookFunction}>Book Appointment</Button>
-          </Form.Group>
-        </Form>
-      </Container> */}
+      <br />
+      <br />
     </div>
   );
 }

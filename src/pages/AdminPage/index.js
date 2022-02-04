@@ -9,7 +9,9 @@ import { selectToken, selectUser } from "../../store/user/selectors";
 import { useNavigate } from "react-router-dom";
 import AdminPageCompo from "../../components/AdminPageCompo";
 import AdminAvailableDateForm from "../../components/AdminPageCompo/dateForm";
-import { Button } from "react-bootstrap";
+import { Button, Col, Container, Row } from "react-bootstrap";
+
+import "./admin.css";
 
 export default function AdminPage() {
   const token = useSelector(selectToken);
@@ -23,7 +25,7 @@ export default function AdminPage() {
     }
     dispatch(fetchAllReservationForAdmin());
     dispatch(fetchAllCalendar());
-  }, [dispatch, navigate, token]);
+  }, [dispatch, navigate, token, user]);
 
   const [showCalendar, setShowCalendar] = useState(false);
   const [showReservation, setShowReservation] = useState(false);
@@ -39,20 +41,41 @@ export default function AdminPage() {
   };
 
   return (
-    <div>
-      {!showCalendar ? (
-        <Button onClick={calendarButton}>Show Calendar</Button>
-      ) : (
-        <Button onClick={calendarButton}>Close</Button>
-      )}
+    <div
+      style={{
+        backgroundColor: "black",
+        paddingTop: "20px",
+        paddingBottom: "600px",
+      }}
+    >
+      <Container className="firstAdminContainer">
+        <Row>
+          <Col style={{ textAlign: "right" }}>
+            {!showCalendar ? (
+              <Button id="adminButton" onClick={calendarButton}>
+                Show Calendar
+              </Button>
+            ) : (
+              <Button id="adminButton" onClick={calendarButton}>
+                Close
+              </Button>
+            )}
+          </Col>
+          <Col style={{ textAlign: "left" }}>
+            {!showReservation ? (
+              <Button id="adminButton" onClick={reservationButton}>
+                Show Reservations
+              </Button>
+            ) : (
+              <Button id="adminButton" onClick={reservationButton}>
+                Close
+              </Button>
+            )}
+          </Col>
+        </Row>
 
-      <br />
-
-      {!showReservation ? (
-        <Button onClick={reservationButton}>Show Reservations</Button>
-      ) : (
-        <Button onClick={reservationButton}>Close</Button>
-      )}
+        <br />
+      </Container>
 
       {showCalendar ? <AdminAvailableDateForm /> : null}
 

@@ -19,7 +19,7 @@ export default function Navigation() {
     return (
       <img
         style={{ width: "30px", height: "30px" }}
-        src="https://res.cloudinary.com/dkdzt4lca/image/upload/v1643146266/Sheyla/a91e524e73508bb1d4b03fd22756e041_v3fp82.png"
+        src="https://res.cloudinary.com/dkdzt4lca/image/upload/v1643752677/Sheyla/phiLogo_kgjy8k.png"
         alt=""
       />
     );
@@ -30,7 +30,7 @@ export default function Navigation() {
   const loginLogoutControls = token ? <LoggedIn /> : <LoggedOut />;
 
   return (
-    <Navbar className="bakground" bg="light" expand="lg">
+    <Navbar id="navColor" variant="dark" expand="lg">
       <Navbar.Brand style={{ paddingLeft: "30px" }} as={NavLink} to="/">
         {phi()} SheyBrows
       </Navbar.Brand>

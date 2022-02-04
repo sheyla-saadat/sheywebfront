@@ -10,18 +10,18 @@ export default function DetailService() {
   const dispatch = useDispatch();
 
   const { name } = useParams();
-  console.log("name of specific service  from detailservice page is:", name);
+  console.log("name of specific service is:", name);
 
   useEffect(() => {
     dispatch(fetchServiceByName(name));
-  }, [dispatch, name]); /// got the inifint here ,fixed
+  }, [dispatch, name]);
 
   const specificService = useSelector(selectSpecificServices);
 
   console.log("Specific service is:", specificService);
-  /////checked till here all good from consol it showed the chosen service name so now go to back . back done checked in console data is fetched correct
+
   return (
-    <div>
+    <div style={{ backgroundColor: "black" }}>
       {specificService.map((service) => (
         <DetailServiceCompo
           id={service.id}
@@ -32,5 +32,5 @@ export default function DetailService() {
         />
       ))}
     </div>
-  ); //// now ready to be used in the component ...
+  );
 }

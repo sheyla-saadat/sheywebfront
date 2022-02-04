@@ -1,9 +1,16 @@
-import React from "react";
+import React, { useEffect } from "react";
+import "./allservices.css";
+import Aos from "aos";
+import "aos/dist/aos.css";
 
 export default function Philash() {
+  useEffect(() => {
+    Aos.init({ duration: 3000 });
+  }, []);
+
   return (
-    <div style={{ width: "300px", textAlign: "center" }}>
-      <p>
+    <div id="srvicetextSetting">
+      <p data-aos="fade-left">
         Eyelash lifting is a treatment of your own eyelashes, without applying
         false eyelashes. The lashes are lifted by silicone pads. All eyelash
         hairs can be treated with these pads. This makes mascara and an eyelash

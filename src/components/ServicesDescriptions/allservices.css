@@ -6,19 +6,33 @@
   font-family: "Indie Flower", cursive;
 }
 
-#topic {
+#afterCareTopic {
   color: rgb(143, 111, 0);
   font-weight: bolder;
+  font-size: 45px;
+  text-shadow: rgba(143, 112, 0, 0.699) 3px 3px 3px;
 }
 
-.firstJumbotron {
-  vertical-align: middle;
+#srvicetextSetting {
+  font-size: 27px;
+  line-height: 35px;
+  word-spacing: 1px;
+  font-weight: lighter;
+  text-align: justify;
+  margin: auto 275px;
+  padding-top: 75px;
+}
+
+#tabletext {
+  font-size: 27px;
+  line-height: 35px;
+  word-spacing: 1px;
   text-align: center;
-  justify-content: center;
-  align-items: center;
+  vertical-align: middle;
+  margin: auto;
 }
 
-#textSetting {
+#aftercaretextSetting {
   font-size: 27px;
   line-height: 35px;
   word-spacing: 1px;
@@ -35,20 +49,4 @@
   border-style: solid;
   overflow: hidden;
   border-width: 5px;
-}
-
-#servicePhoto {
-  animation: kitslideleft 1s ease;
-  animation-fill-mode: backwards;
-}
-
-@keyframes kitslideleft {
-  0% {
-    opacity: 0;
-    transform: translate(-5rem, 0);
-  }
-  100% {
-    opacity: 1;
-    transform: translate(0, 0);
-  }
 }

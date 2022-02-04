@@ -1,5 +1,5 @@
-import React from "react";
-import { Button } from "react-bootstrap";
+import React, { useEffect } from "react";
+import { Button, Col, Container, Row } from "react-bootstrap";
 import { Link, useParams } from "react-router-dom";
 import Phibrows from "../ServicesDescriptions/Phibrows";
 import PhibrowsAfterCare from "../ServicesDescriptions/PhibrowsAfterCare";
@@ -8,54 +8,93 @@ import PhilashAfterCare from "../ServicesDescriptions/PhilashAfterCare";
 import Phiremoval from "../ServicesDescriptions/Phiremoval";
 import PhiremovalAfterCare from "../ServicesDescriptions/PhiremovalAfterCare";
 
+import "./detailservices.css";
+import Aos from "aos";
+import "aos/dist/aos.css";
+
 export default function DetailServiceCompo(props) {
   const { name } = useParams();
-  ////// the process went is such that at first i tried to keep every thing together and partialy in the back end and here but since i had also after care  and one more part in every service which can be subjected to change depndes on the new info i decided to seperate the descriptin and the after care seperate so i can handle them easier in the future.
+
+  useEffect(() => {
+    Aos.init({ duration: 2000 });
+  }, []);
 
   return (
-    <div>
-      {name === "Phibrows" ? (
-        <Phibrows />
-      ) : name === "Phiremoval" ? (
-        <Phiremoval />
-      ) : name === "Philashes" ? (
-        <Philash />
-      ) : (
-        "Nothing"
-      )}
+    <div style={{ textAlign: "center" }}>
+      <Container data-aos="fade-down">
+        {name === "Phibrows" ? (
+          <Phibrows />
+        ) : name === "Phiremoval" ? (
+          <Phiremoval />
+        ) : name === "Philashes" ? (
+          <Philash />
+        ) : (
+          "Nothing"
+        )}
+      </Container>
+      <br />
+      <br />
+      <Container data-aos="fade-up">
+        <Row>
+          <Col>
+            <img
+              data-aos="fade-right"
+              className="servicemedia-box"
+              src={props.imageUrl}
+              alt=""
+            />
+          </Col>
 
-      <img
-        style={{ width: "30%", height: "30%" }}
-        src={props.imageUrl}
-        alt=""
-      />
+          <Col id="tabletext" data-aos="fade-left">
+            <Row style={{ fontSize: "35px" }}>
+              <Col style={{ textAlign: "right" }}>
+                <p> Price: </p>
+              </Col>
+              <Col style={{ textAlign: "left" }}>
+                <p> {props.servicePrice} €</p>
+              </Col>
+            </Row>
+            <br />
+            <br />
 
-      <Link to="/reservation">
-        <Button>Reservation</Button>
-      </Link>
+            <Row>
+              <p>* NOTE</p>
+              <p>
+                If you lost your brows due to any disease you can pay with your
+                smile
+              </p>
+              <img
+                src="https://res.cloudinary.com/dkdzt4lca/image/upload/v1643757043/Sheyla/smilepay-white_ihakzr.png"
+                alt=""
+                style={{ width: "25%", height: "25%", margin: "auto" }}
+              />
+            </Row>
+            <br />
+            <br />
 
-      {name === "Phibrows" ? (
-        <PhibrowsAfterCare />
-      ) : name === "Phiremoval" ? (
-        <PhiremovalAfterCare />
-      ) : name === "Philashes" ? (
-        <PhilashAfterCare />
-      ) : (
-        "Nothing"
-      )}
+            <Row>
+              <Link to="/reservation">
+                <Button id="homeButton" data-aos="flip-right">
+                  Reservation
+                </Button>
+              </Link>
+            </Row>
+          </Col>
+        </Row>
+      </Container>
+      <br />
 
-      <h5> Price: </h5>
-      <p> {props.servicePrice} €</p>
-
-      <h6>* NOTE</h6>
-      <p>
-        If you lost your brows due to any disease you can pay with your smile
-      </p>
-      <img
-        style={{ width: "10%", height: "10%" }}
-        src="https://res.cloudinary.com/dkdzt4lca/image/upload/v1642683054/Sheyla/ay-with-smile-pay-with-smile-phibrows-logo-115628985252yyb40duey_e0pzkr.png"
-        alt=""
-      />
+      <Container style={{ paddingTop: "75px" }}>
+        {name === "Phibrows" ? (
+          <PhibrowsAfterCare />
+        ) : name === "Phiremoval" ? (
+          <PhiremovalAfterCare />
+        ) : name === "Philashes" ? (
+          <PhilashAfterCare />
+        ) : (
+          "Nothing"
+        )}
+      </Container>
     </div>
   );
 }

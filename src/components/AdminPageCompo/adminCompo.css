@@ -1,0 +1,156 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  color: white;
+  font-family: "Indie Flower", cursive;
+}
+
+#topic {
+  color: rgb(143, 111, 0);
+  font-weight: bolder;
+}
+
+.firstAdminContainer {
+  margin: 30px 500px 100px;
+  vertical-align: middle;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+}
+
+#adminButton {
+  width: 200px;
+  height: 50px;
+  transition: 1s;
+  margin: auto 5px;
+  background-color: rgb(143, 111, 0);
+  border-color: rgb(143, 111, 0);
+}
+
+#adminButton:hover {
+  transition: 1s;
+  transform: scale(1.1);
+}
+
+#tableButton {
+  width: 155px;
+  transition: 1s;
+  margin: 0px 5px;
+  background-color: rgb(143, 111, 0);
+  border-color: rgb(143, 111, 0);
+}
+
+#tableButton:hover {
+  /* border-radius: 30px; */
+  transition: 1s;
+  transform: scale(1.1);
+}
+
+td {
+  font-size: 20px;
+}
+
+h3 {
+  font-size: 50px;
+  font-weight: bolder;
+}
+
+#adminReservationtable {
+  margin: auto, 200px;
+  vertical-align: middle;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  animation: zoomouttable 1.5s ease;
+  animation-fill-mode: backwards;
+}
+
+@keyframes zoomouttable {
+  0% {
+    opacity: 0;
+    transform: translate(10rem, -16rem) scale(0);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(0, 0) scale(1);
+  }
+}
+
+#description {
+  animation: comein 1s ease-in-out;
+  animation-fill-mode: backwards;
+}
+
+@keyframes comein {
+  0% {
+    width: 0;
+    opacity: 0;
+  }
+
+  100% {
+    width: 100%;
+    opacity: 1;
+  }
+}
+
+#adminCalendertable {
+  margin: auto, 200px;
+  vertical-align: middle;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  animation: zoomout2table 1.5s ease;
+  animation-fill-mode: backwards;
+}
+
+@keyframes zoomout2table {
+  0% {
+    opacity: 0;
+    transform: translate(-10rem, -16rem) scale(0);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(0, 0) scale(1);
+  }
+}
+
+#confirmButton {
+  width: 200px;
+  transition: 1s;
+  margin: 0px 5px;
+  background-color: rgb(143, 111, 0);
+  border-color: rgb(143, 111, 0);
+}
+
+#confirmButton:hover {
+  /* border-radius: 30px; */
+  transition: 1s;
+  transform: scale(1.1);
+}
+
+#submitButton {
+  width: 200px;
+  transition: 1s;
+  margin: 0px 5px;
+  background-color: rgb(143, 111, 0);
+  border-color: rgb(143, 111, 0);
+  animation: submitbutt 1s ease-in-out;
+  animation-fill-mode: backwards;
+}
+
+@keyframes submitbutt {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+#submitButton:hover {
+  /* border-radius: 30px; */
+  transition: 1s;
+  transform: scale(1.1);
+}

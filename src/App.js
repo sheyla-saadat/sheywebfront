@@ -23,6 +23,7 @@ function App() {
 
   useEffect(() => {
     dispatch(getUserWithStoredToken());
+    document.title="Sheybrows"
   }, [dispatch]);
 
   return (

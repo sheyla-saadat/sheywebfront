@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
-import { Button, Col, Container, Jumbotron, Row } from "react-bootstrap";
+import { Col, Container, Jumbotron, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
 import HomepageCompo from "../../components/HomepageCompo";
 import { fetchAllService } from "../../store/service/actions";
 import { selectAllServices } from "../../store/service/selectors";
@@ -47,7 +46,7 @@ export default function Homepage() {
               paddingLeft: "60px",
             }}
           >
-            <h1 id="topic">Wat is permanente make up?</h1>
+            <h1 id="topic">What is permanente make up?</h1>
             <br />
             <p id="textSetting">
               Do you also dream of perfect eyebrows that you no longer have to
@@ -77,7 +76,6 @@ export default function Homepage() {
               width="75%"
               height="75%"
               controls="controls"
-              // autoplay="true"
             />
           </Col>
         </Row>
@@ -88,7 +86,7 @@ export default function Homepage() {
           {allServices.map((service, i) =>
             service.id === 1 ? null : (
               <Col
-                data-aos="fade-right"
+                data-aos="fade-up"
                 md="3"
                 style={{ textAlign: "center", animationDelay: `${150 * i}ms` }}
               >

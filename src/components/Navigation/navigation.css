@@ -1,16 +1,31 @@
-.bakground {
-  color: white;
-  margin: 0;
-  background-color: #0b090a;
-  /* background-size: cover; */
-  /* font-size: calc(10px + 2vmin); */
-  min-width: 500px;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 100%;
+#navColor {
+  background: linear-gradient(to bottom, rgb(143, 111, 0), #0b090a);
+  height: 75px;
+  font-size: 20px;
+  animation: slideInFromRight 0.75s ease-out;
 }
 
-.navColor {
-  background-color: rgb(143.111.0);
+@keyframes slideInFromRight {
+  0% {
+    opacity: 0;
+    transform: translate(0, -1rem);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(0, 0);
+  }
+}
+
+#logoutButton {
+  width: 100px;
+  transition: 1s;
+  margin: 0px 5px;
+  border-color: white;
+  color: white;
+  background: linear-gradient(to bottom, rgb(143, 111, 0), #0b090a);
+}
+
+#logoutButton:hover {
+  transition: 1s;
+  transform: scale(1.1);
 }

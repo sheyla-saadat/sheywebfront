@@ -1,5 +1,4 @@
 import axios from "axios";
-import { useState } from "react";
 import { apiUrl } from "../../config/constants";
 import {
   appDoneLoading,
@@ -74,6 +73,12 @@ export const makeReservation = (serviceId, dateTime, id) => {
     try {
       console.log("I'm here inside makeReservation action");
 
+      if (serviceId === null) {
+        dispatch(
+          showMessageWithTimeout("danger", false, "Select the service", 3000)
+        );
+      }
+
       await axios.patch(`${apiUrl}/service/calendar`, {
         isBooked: true,
         id,
@@ -83,7 +88,6 @@ export const makeReservation = (serviceId, dateTime, id) => {
         `${apiUrl}/service/reservation`,
         {
           serviceId,
-          // formattedDates,
           dateTime,
         },
         {
@@ -110,7 +114,7 @@ export const makeReservation = (serviceId, dateTime, id) => {
         console.log(error.response);
 
         dispatch(
-          showMessageWithTimeout("danger", false, "Fill to reserve", 3000)
+          showMessageWithTimeout("danger", false, "Select the service", 3000)
         );
       }
     }

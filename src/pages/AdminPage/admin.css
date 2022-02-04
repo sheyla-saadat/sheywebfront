@@ -1,0 +1,34 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  color: white;
+  font-family: "Indie Flower", cursive;
+}
+
+#topic {
+  color: rgb(143, 111, 0);
+  font-weight: bolder;
+}
+
+.firstAdminContainer {
+  margin: 30px 500px 100px;
+  vertical-align: middle;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+}
+
+#adminButton {
+  width: 200px;
+  height: 50px;
+  transition: 1s;
+  margin: auto 5px;
+  background-color: rgb(143, 111, 0);
+  border-color: rgb(143, 111, 0);
+}
+
+#adminButton:hover {
+  transition: 1s;
+  transform: scale(1.1);
+}

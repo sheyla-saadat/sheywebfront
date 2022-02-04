@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Carousel, Figure } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 import "./homeCompo.css";
@@ -15,19 +15,19 @@ export default function HomepageCompo(props) {
     );
   };
   return (
-    <div>
+    <div className="media-box">
       <div id="wrapper">
         <div class="image-container">
-          <img src={props.imageUrl} alt="" />
-
-          {/* <Link to={props.serviceName}>
+          <Link to={props.serviceName}>
             <img src={props.imageUrl} alt="" />
-          </Link> */}
-          <div class="image-caption">
-            <h1 style={{ border: "solid, 10px, white" }}>
-              {props.serviceName}
-            </h1>
-          </div>
+          </Link>
+          <a href={`/${props.serviceName}`}>
+            <div class="image-caption">
+              <h1 style={{ border: "solid, 10px, white" }}>
+                {props.serviceName}
+              </h1>
+            </div>
+          </a>
         </div>
       </div>
       <br />
@@ -35,9 +35,11 @@ export default function HomepageCompo(props) {
       <Link to="/reservation">
         <Button id="homeButton">{phi()}Book Now</Button>
       </Link>
-      <Link to={`${props.serviceName}`}>
+      <a href={`/${props.serviceName}`}>
         <Button id="homeButton">{phi()}Read more</Button>
-      </Link>
+      </a>
+      <br />
+      <br />
     </div>
   );
 }
